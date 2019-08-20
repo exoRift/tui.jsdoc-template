@@ -69,7 +69,7 @@ ul, ol, li { list-style: none; padding-left: 0; margin-left: 0;}
 }
 .lnb .lnb-api a,
 .lnb .lnb-examples a {
-    color: var(--dark-main-color);
+    color: var(--main-accent-color);
 }
 .lnb .lnb-api a:hover,
 .lnb .lnb-examples a:hover {
@@ -520,6 +520,9 @@ code {
 }
 pre.prettyprint.source {
     padding: 5px;
+}
+hr {
+    border-top: 4px solid rgba(0, 0, 0, 0.2);
 }
 
 /* ANIMATIONS */

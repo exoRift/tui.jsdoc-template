@@ -4,20 +4,24 @@ var examples = env.conf.opts.tutorials;
 var css = templates.css;
 var logo = templates.logo;
 var footerText = templates.footerText;
-var logoUrl = 'img/toast-ui.png';
+var logoDir = 'img/toast-ui.png';
 var width, height;
 var name = templates.name || package.name || title;
 var tutorialsName = templates.tabNames.tutorials;
 var apiName = templates.tabNames.api;
 var style = '';
+var footerStyle = '';
 var version = '';
 var logoLink = '';
 
 if (logo) {
-    logoUrl = logo.url || logoUrl;
+    splashDir = logo.splashDir || logoDir;
+    iconDir = logo.iconDir || logoDir;
     logoLink = logo.link || logoLink;
     width = logo.width;
     height = logo.height;
+    iconWidth = logo.iconWidth;
+    iconHeight = logo.iconHeight;
 }
 
 if (width) {
@@ -28,6 +32,14 @@ if (height) {
     style += '; height: ' + height;
 }
 
+if (iconWidth) {
+    footerStyle += 'width: ' + iconWidth;
+}
+
+if (iconHeight) {
+    footerStyle += '; height: ' + iconHeight;
+}
+
 if (package) {
     version = package.version;
 }
@@ -35,6 +47,7 @@ if (package) {
 
 <!DOCTYPE html>
 <html lang="en">
+<link rel="shortcut icon" type="image" href=<?js= iconDir ?>>
 <head>
     <meta charset="utf-8">
     <title><?js= title + ' | ' + name ?></title>
@@ -46,7 +59,7 @@ if (package) {
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow-night.css">
     <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
 
     <?js if (css) { ?>
@@ -60,10 +73,10 @@ if (package) {
     <div class="logo" style="<?js= style ?>">
         <?js if (logoLink) { ?>
             <a href="<?js= logoLink?>" rel="noopener noreferrer" target="_blank">
-                <img src="<?js= logoUrl?>" width="100%" height="100%">
+                <img src="<?js= splashDir?>" width="100%" height="100%">
             </a>
         <?js } else { ?>
-            <img src="<?js= logoUrl?>" width="100%" height="100%">
+            <img src="<?js= splashDir?>" width="100%" height="100%">
         <?js } ?>
     </div>
     <div class="title">
@@ -95,8 +108,10 @@ if (package) {
 </div>
 
 <footer>
-    <img class="logo" src="<?js= logoUrl?>" style="<?js= style ?>">
-    <div class="footer-text"><?js= footerText || 'NHN Entertainment. Frontend Development Lab' ?></div>
+    <div class="footerContent">
+        <img class="footerLogo" src="<?js= iconDir?>" style="<?js= footerStyle ?>">
+        <div class="footer-text"><?js= footerText || 'NHN Entertainment. Frontend Development Lab' ?></div>
+    </div>
 </footer>
 <script>prettyPrint();</script>
 <script src="scripts/jquery.min.js"></script>

@@ -19,6 +19,8 @@ var resolveAuthorLinks = helper.resolveAuthorLinks;
 var scopeToPunc = helper.scopeToPunc;
 var hasOwnProp = Object.prototype.hasOwnProperty;
 
+const typeDetailRegex = /\.&lt;/g
+
 var data;
 var view;
 var tutorialsName;
@@ -115,7 +117,7 @@ function updateItemName(item) {
     }
 
     if (attributes && attributes.length) {
-        itemName = util.format( '%s<span class="signature-attributes">%s</span>', itemName,
+        itemName = util.format( '%s<span class="signature-attributes"> : %s</span>', itemName,
             attributes.join(', ') );
     }
 
@@ -133,7 +135,7 @@ function buildItemTypeStrings(item) {
 
     if (item && item.type && item.type.names) {
         item.type.names.forEach(function(name) {
-            types.push( linkto(name, htmlsafe(name)) );
+            types.push( linkto(name, htmlsafe(name)).replace(typeDetailRegex, '&lt;') );
         });
     }
 
@@ -145,8 +147,8 @@ function buildAttribsString(attribs) {
 
     if (attribs && attribs.length) {
         attribsString = util.format(
-            '<span class="icon green">%s</span> ',
-            attribs.join('</span>, <span class="icon green">')
+            '<span class="icon blue">%s</span> ',
+            attribs.join('</span>, <span class="icon blue">')
         );
     }
 
@@ -192,7 +194,7 @@ function addSignatureReturns(f) {
     }
 
     if (source) {
-        returnTypes = addNonParamAttributes(f.returns);
+        returnTypes = f.returns ? addNonParamAttributes(f.returns) : [];
     }
     if (returnTypes.length) {
         returnTypesString = util.format( ' &rarr; %s{%s}', attribsString, returnTypes.join('|') );
@@ -206,7 +208,7 @@ function addSignatureTypes(f) {
     var types = f.type ? buildItemTypeStrings(f) : [];
 
     f.signature = (f.signature || '') + '<span class="type-signature">' +
-        (types.length ? ' :' + types.join('|') : '') + '</span>';
+        (types.length ? ' : ' + types.join('|') : '') + '</span>';
 }
 
 function addAttribs(f) {

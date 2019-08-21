@@ -45,6 +45,7 @@ ul, ol, li { list-style: none; padding-left: 0; margin-left: 0;}
     font-style: italic;
 }
 .lnb h3 {
+    margin-top: 20px;
     font-size: 1.5em;
     color: var(--dark-main-color-light-offset);
 }
@@ -524,6 +525,33 @@ pre.prettyprint.source {
 hr {
     border-top: 4px solid rgba(0, 0, 0, 0.2);
 }
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-plus:before {
+    content: '\002b';
+}
+.btn-link {
+    color: #337ab7;
+}
+.btn-link:hover {
+    color: #3c97e7;
+}
+
+@font-face {
+	font-family: 'Glyphicons Halflings';
+	src: url(../fonts/glyphicons-halflings-regular.eot);
+	src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../fonts/glyphicons-halflings-regular.woff) format('woff'), url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg');
+}
+
 
 /* ANIMATIONS */
 @keyframes textScroll {
